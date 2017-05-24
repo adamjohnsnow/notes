@@ -38,4 +38,14 @@
     var fakeNoteList = {notes: [{ text: 'Here is a note that is really too long to be displayed properly'}, { text: 'Here is another note that is also a bit too long' }]}
     noteController = new NoteController(fakeNoteList);
     sameTheyAre('Just the first 20 characters', document.getElementById('app').innerHTML, htmlString)
+
+    testList = new NoteList();
+    testList.newNote("testNote");
+    testList.newNote("testNote2");
+    sameTheyAre('Adds unique ID to every note created in the same list', testList.notes[0].id, 0);
+    sameTheyAre('Adds unique ID to every note created in the same list', testList.notes[1].id, 1);
+
+    noteController.changePath(0);
+    htmlDisplay = document.getElementById('app').innerHTML;
+    sameTheyAre('displays note dynamically based on id from onclick event', htmlDisplay, "testNote")
 })();

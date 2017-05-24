@@ -3,8 +3,12 @@
 function NoteList() {
   var notes = [];
 
+  var n = 0
+
   var newNote = function(text, fakeNote) {
-    notes.push(fakeNote || new Note(text));
+    const ID = n
+    notes.push(fakeNote || new Note(text, ID));
+    n = n + 1;
   }
 
   var displayNotes = function() {
