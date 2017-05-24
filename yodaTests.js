@@ -12,18 +12,22 @@
     sameTheyAre('Making new note pushes to array', noteList.notes[0], note1)
 
     noteList.newNote('fakenote', { text: 'Here is another note' });
-    sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Hre is another note")
+    sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Here is another note")
 
     var htmlString = '<ul><li><div>Here is a note</div></li><li><div>Here is another note</div></li></ul>';
     var fakeNoteList = [{ text: 'Here is a note'}, { text: 'Here is another note' }]
-    sameTheyAre('Produces string of HTML with notes', noteListView.getHTML(fakeNoteList), htmlString);
+    sameTheyAre('Produces string of HTML with notes', noteListView.getHTML(noteListView.buildNoteArray(fakeNoteList)), htmlString);
 
     var htmlStringOneNote = '<ul><li><div>Here is a note</div></li></ul>';
     var fakeNoteObject = [{ text: 'Here is a note'}]
-    sameTheyAre('Produces string of HTML with one note', noteListView.getHTML(fakeNoteObject), htmlStringOneNote);
+    sameTheyAre('Produces string of HTML with one note', noteListView.getHTML(noteListView.buildNoteArray(fakeNoteObject)), htmlStringOneNote);
 
     var htmlStringNoNotes = '';
     var fakeNoNote = [];
-    sameTheyAre('Does not produce string of HTML with no note', noteListView.getHTML(fakeNoNote), htmlStringNoNotes);
+    sameTheyAre('Does not produce string of HTML with no note', noteListView.getHTML(noteListView.buildNoteArray(fakeNoNote)), htmlStringNoNotes);
 
+    var htmlString = '<ul><li><div>Here is a note</div></li><li><div>Here is another note</div></li></ul>';
+    var fakeNoteList = {notes: [{ text: 'Here is a note'}, { text: 'Here is another note' }]}
+    noteController = new NoteController(fakeNoteList);
+    sameTheyAre('FEATURE: Updates HTML element', noteController.htmlList, htmlString)
 })();
