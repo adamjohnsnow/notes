@@ -1,6 +1,5 @@
 (function noteController(){
 
-
     var html = new buildHTML();
     var list = new NoteList();
     list.newNote("testText1");

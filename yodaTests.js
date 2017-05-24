@@ -2,7 +2,7 @@
   var string = "My favourite testing framework is from Dagobah",
       note = new Note(string),
       noteList = new NoteList();
-      noteListView = new NoteListView();
+      noteListView = new buildHTML();
 
     sameTheyAre('Contains a string', note.text, string)
     sameTheyAre('Using .text prints the string', note.textPrint(), string)
@@ -25,4 +25,5 @@
     var htmlStringNoNotes = '';
     var fakeNoNote = [];
     sameTheyAre('Does not produce string of HTML with no note', noteListView.getHTML(fakeNoNote), htmlStringNoNotes);
+
 })();
