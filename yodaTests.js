@@ -12,7 +12,7 @@
     sameTheyAre('Making new note pushes to array', noteList.notes[0], note1)
 
     noteList.newNote('fakenote', { text: 'Here is another note' });
-    sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Here is another note")
+    sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Hre is another note")
 
     var htmlString = '<ul><li><div>Here is a note</div></li><li><div>Here is another note</div></li></ul>';
     var fakeNoteList = [{ text: 'Here is a note'}, { text: 'Here is another note' }]
