@@ -28,7 +28,10 @@
 
     var htmlString = '<ul><li><div>Here is a note</div></li><li><div>Here is another note</div></li></ul>';
     var fakeNoteList = {notes: [{ text: 'Here is a note'}, { text: 'Here is another note' }]}
-
-    var noteController = new NoteController(fakeNoteList);
+    noteController = new NoteController(fakeNoteList);
+    console.log()
     sameTheyAre('FEATURE: Updates HTML element', document.getElementById('app').innerHTML, htmlString)
+
+    singleNote = new SingleNote(fakeNoteList.notes[0])
+    sameTheyAre('Displays a single note', document.getElementById('app').innerHTML, 'Here is a note')
 })();
