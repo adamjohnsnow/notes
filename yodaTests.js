@@ -11,14 +11,14 @@
     noteList.newNote('fakenote', note1);
     sameTheyAre('Making new note pushes to array', noteList.notes[0], note1)
 
-    noteList.newNote('fakenote', { text: 'Here is another note' });
-    sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Here is another note")
+    noteList.newNote('fakenote', { text: 'Another note' });
+    sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Another note")
 
-    var htmlString = '<ul><li><div>Here is a note</div></li><li><div>Here is another note</div></li></ul>';
+    var htmlString = '<ul><li><div>Here is a note...</div></li><li><div>Here is another note...</div></li></ul>';
     var fakeNoteList = [{ text: 'Here is a note'}, { text: 'Here is another note' }]
     sameTheyAre('Produces string of HTML with notes', noteListView.getHTML(noteListView.buildNoteArray(fakeNoteList)), htmlString);
 
-    var htmlStringOneNote = '<ul><li><div>Here is a note</div></li></ul>';
+    var htmlStringOneNote = '<ul><li><div>Here is a note...</div></li></ul>';
     var fakeNoteObject = [{ text: 'Here is a note'}]
     sameTheyAre('Produces string of HTML with one note', noteListView.getHTML(noteListView.buildNoteArray(fakeNoteObject)), htmlStringOneNote);
 
@@ -26,12 +26,16 @@
     var fakeNoNote = [];
     sameTheyAre('Does not produce string of HTML with no note', noteListView.getHTML(noteListView.buildNoteArray(fakeNoNote)), htmlStringNoNotes);
 
-    var htmlString = '<ul><li><div>Here is a note</div></li><li><div>Here is another note</div></li></ul>';
-    var fakeNoteList = {notes: [{ text: 'Here is a note'}, { text: 'Here is another note' }]}
+    var htmlString = '<ul><li><div>Here is a note...</div></li><li><div>Another note...</div></li></ul>';
+    var fakeNoteList = {notes: [{ text: 'Here is a note'}, { text: 'Another note' }]}
     noteController = new NoteController(fakeNoteList);
-    console.log()
     sameTheyAre('FEATURE: Updates HTML element', document.getElementById('app').innerHTML, htmlString)
 
     singleNote = new SingleNote(fakeNoteList.notes[0])
     sameTheyAre('Displays a single note', document.getElementById('app').innerHTML, 'Here is a note')
+
+    var htmlString = '<ul><li><div>Here is a note that ...</div></li><li><div>Here is another note...</div></li></ul>';
+    var fakeNoteList = {notes: [{ text: 'Here is a note that is really too long to be displayed properly'}, { text: 'Here is another note that is also a bit too long' }]}
+    noteController = new NoteController(fakeNoteList);
+    sameTheyAre('Just the first 20 characters', document.getElementById('app').innerHTML, htmlString)
 })();

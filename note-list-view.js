@@ -6,7 +6,8 @@ function buildHTML() {
     var n = 0;
     var noteArray = [];
     for (n in noteList) {
-      noteArray.push(noteList[n].text);
+      var shortString = noteList[n].text.substring(0, 20)
+      noteArray.push(shortString + '...');
     };
     return noteArray;
   };
