@@ -11,10 +11,10 @@ function NoteList() {
   }
 
   var displayNotes = function() {
-    var note = 0,
+    var i = 0,
     returnArray = [];
-    for (note in notes) {
-      returnArray.push(notes[note].text);
+    for (i in notes) {
+      returnArray.push(notes[i].text);
     }
     return returnArray.join(', ');
   }
