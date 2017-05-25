@@ -1,8 +1,5 @@
 function Listeners(list) {
 
-  (function changeCurrentPage() {
-    window.addEventListener("hashchange", showNoteForCurrentPage);
-  })();
 
   (function stopSubmits() {
     window.addEventListener("submit", function(event){
@@ -10,6 +7,10 @@ function Listeners(list) {
       list.newNote(event.target.newNote.value);
       return controller = new NoteController(list);
     }, false)
+  })();
+
+  (function changeCurrentPage() {
+    window.addEventListener("hashchange", showNoteForCurrentPage);
   })();
 
   function showNoteForCurrentPage() {
