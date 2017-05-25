@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title> Adam's, Bailey's and Hendrik's amazing notes page</title>
+    <title> The Most Note </title>
   </head>
 
   <body>
@@ -13,7 +13,22 @@
     <script src="./note-list-view.js" type="text/javascript"></script>
     <script src="./notecontroller.js" type="text/javascript"></script>
 
-    
+    <script type="text/javascript">
+    window.onload = function(){
+      var list = new NoteList();
+      list.newNote('Here is a first note to test.');
+      list.newNote('A second note would be good too.');
+      list.newNote('Third time\'s the charm.');
+      list.newNote('What do we think about four notes?');
+      var controller = new NoteController(list)
+    };
+    </script>
+
+    <form action="#new-note" method="get">
+      <input type="text" id="newNote" placeholder="New note - type here..." size="50">
+      <input type="submit" value="Submit">
+    </form>
+
   </body>
 
 </html>

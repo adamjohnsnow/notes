@@ -5,6 +5,13 @@ function NoteController(list){
     window.addEventListener("hashchange", showNoteForCurrentPage);
   })();
 
+  (function stopSubmits() {
+    window.addEventListener("submit", function(event){
+      console.log(event.target.newNote.value);
+      event.preventDefault();
+    }, false)
+  })();
+
   function showNoteForCurrentPage() {
     showNote(changePath(window.location));
   };
