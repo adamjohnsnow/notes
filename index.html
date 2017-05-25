@@ -8,19 +8,17 @@
   <body>
 
     <div id="app"></div>
-    <script src="./note-model.js" type="text/javascript"></script>
-    <script src="./note-list-model.js" type="text/javascript"></script>
-    <script src="./note-list-view.js" type="text/javascript"></script>
-    <script src="./notecontroller.js" type="text/javascript"></script>
+    <script src="./src/listeners.js" type="text/javascript"></script>
+    <script src="./src/note-model.js" type="text/javascript"></script>
+    <script src="./src/note-list-model.js" type="text/javascript"></script>
+    <script src="./src/note-list-view.js" type="text/javascript"></script>
+    <script src="./src/notecontroller.js" type="text/javascript"></script>
 
     <script type="text/javascript">
     window.onload = function(){
       var list = new NoteList();
-      list.newNote('Here is a first note to test.');
-      list.newNote('A second note would be good too.');
-      list.newNote('Third time\'s the charm.');
-      list.newNote('What do we think about four notes?');
       var controller = new NoteController(list)
+      var listeners = new Listeners(list);
     };
     </script>
 
