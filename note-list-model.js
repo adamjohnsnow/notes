@@ -6,8 +6,7 @@ function NoteList() {
   var n = 0
 
   var newNote = function(text, fakeNote) {
-    const ID = n
-    notes.push(fakeNote || new Note(text, ID));
+    notes.push(fakeNote || new Note(text, n));
     n = n + 1;
   }
 

@@ -1,33 +1,33 @@
 (function(exports){
   var string = "My favourite testing framework is from Dagobah",
-      note = new Note(string),
+      note = new Note(string, 0),
       noteList = new NoteList();
       noteListView = new buildHTML();
 
     sameTheyAre('Contains a string', note.text, string)
     sameTheyAre('Using .text prints the string', note.textPrint(), string)
 
-    var note1 = { text: 'Here is a note'};
+    var note1 = { text: 'Here is a note', id: 0 };
     noteList.newNote('fakenote', note1);
     sameTheyAre('Making new note pushes to array', noteList.notes[0], note1)
 
-    noteList.newNote('fakenote', { text: 'Another note' });
+    noteList.newNote('fakenote', { text: 'Another note', id: 1 });
     sameTheyAre('Displays all notes in list', noteList.displayNotes(), "Here is a note, Another note")
 
     var htmlString = '<ul><li><div>Here is a note...</div></li><li><div>Here is another note...</div></li></ul>';
-    var fakeNoteList = [{ text: 'Here is a note'}, { text: 'Here is another note' }]
-    sameTheyAre('Produces string of HTML with notes', noteListView.getHTML(noteListView.buildNoteArray(fakeNoteList)), htmlString);
+    var fakeNoteList = [{ text: 'Here is a note', id: 2}, { text: 'Here is another note', id: 3 }]
+    sameTheyAre('Produces string of HTML with notes', noteListView.getHTML(fakeNoteList), htmlString);
 
     var htmlStringOneNote = '<ul><li><div>Here is a note...</div></li></ul>';
-    var fakeNoteObject = [{ text: 'Here is a note'}]
-    sameTheyAre('Produces string of HTML with one note', noteListView.getHTML(noteListView.buildNoteArray(fakeNoteObject)), htmlStringOneNote);
+    var fakeNoteObject = [{ text: 'Here is a note', id: 2}]
+    sameTheyAre('Produces string of HTML with one note', noteListView.getHTML(fakeNoteObject), htmlStringOneNote);
 
     var htmlStringNoNotes = '';
     var fakeNoNote = [];
-    sameTheyAre('Does not produce string of HTML with no note', noteListView.getHTML(noteListView.buildNoteArray(fakeNoNote)), htmlStringNoNotes);
+    sameTheyAre('Does not produce string of HTML with no note', noteListView.getHTML(fakeNoNote), htmlStringNoNotes);
 
     var htmlString = '<ul><li><div>Here is a note...</div></li><li><div>Another note...</div></li></ul>';
-    var fakeNoteList = {notes: [{ text: 'Here is a note'}, { text: 'Another note' }]}
+    var fakeNoteList = {notes: [{ text: 'Here is a note', id: 2 }, { text: 'Another note', id: 3 }]}
     noteController = new NoteController(fakeNoteList);
     sameTheyAre('FEATURE: Updates HTML element', document.getElementById('app').innerHTML, htmlString)
 
@@ -35,7 +35,7 @@
     sameTheyAre('Displays a single note', document.getElementById('app').innerHTML, 'Here is a note')
 
     var htmlString = '<ul><li><div>Here is a note that ...</div></li><li><div>Here is another note...</div></li></ul>';
-    var fakeNoteList = {notes: [{ text: 'Here is a note that is really too long to be displayed properly'}, { text: 'Here is another note that is also a bit too long' }]}
+    var fakeNoteList = {notes: [{ text: 'Here is a note that is really too long to be displayed properly', id: 4 }, { text: 'Here is another note that is also a bit too long', id: 5 }]}
     noteController = new NoteController(fakeNoteList);
     sameTheyAre('Just the first 20 characters', document.getElementById('app').innerHTML, htmlString)
 

@@ -2,27 +2,20 @@
 
 function buildHTML() {
 
-  const buildNoteArray = function(noteList) {
-    var n = 0;
-    var noteArray = [];
-    for (n in noteList) {
-      var shortString = noteList[n].text.substring(0, 20)
-      noteArray.push(shortString + '...');
-    };
-    return noteArray;
-  };
-
   const getHTML = function(noteArray){
     if (noteArray.length === 0) {
       return '';
     } else {
-      var noteString = noteArray.join('</div></li><li><div>');
-      return ('<ul><li><div>' + noteString + '</div></li></ul>');
+      var i = 0;
+      var htmlString = '';
+      for (i in noteArray){
+        var htmlString = htmlString + '<li><a href=#"' + Number(noteArray[i].id) + '">' + noteArray[i].text.substring(0, 20) + '</a></li>'
+      }
+        return htmlString = '<ul>' + htmlString + '</ul>'
     };
   };
 
   return {
-    buildNoteArray: buildNoteArray,
     getHTML: getHTML
   };
 };
